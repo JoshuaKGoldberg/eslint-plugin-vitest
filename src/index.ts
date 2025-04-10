@@ -52,6 +52,7 @@ import requireLocalTestContextForConcurrentSnapshots, { RULE_NAME as requireLoca
 import preferTodo, { RULE_NAME as preferTodoName } from './rules/prefer-todo'
 import preferSpyOn, { RULE_NAME as preferSpyOnName } from './rules/prefer-spy-on'
 import preferComparisonMatcher, { RULE_NAME as preferComparisonMatcherName } from './rules/prefer-comparison-matcher'
+import preferDescribeFunctionName, { RULE_NAME as preferDescribeFunctionNameName } from './rules/prefer-describe-function-name'
 import preferToContain, { RULE_NAME as preferToContainName } from './rules/prefer-to-contain'
 import preferExpectAssertions, { RULE_NAME as preferExpectAssertionsName } from './rules/prefer-expect-assertions'
 import paddingAroundAfterAllBlocks, { RULE_NAME as paddingAroundAfterAllBlocksName } from './rules/padding-around-after-all-blocks'
@@ -73,8 +74,8 @@ const createConfig = <R extends Linter.RulesRecord>(rules: R) => (
       [`vitest/${ruleName}`]: rules[ruleName]
     }
   }, {})) as {
-    [K in keyof R as `vitest/${Extract<K, string>}`]: R[K]
-  }
+  [K in keyof R as `vitest/${Extract<K, string>}`]: R[K]
+}
 
 const createConfigLegacy = (rules: Record<string, string>) => ({
   plugins: ['@vitest'],
@@ -129,6 +130,7 @@ const allRules = {
   [preferTodoName]: 'warn',
   [preferSpyOnName]: 'warn',
   [preferComparisonMatcherName]: 'warn',
+  [preferDescribeFunctionNameName]: 'warn',
   [preferToContainName]: 'warn',
   [preferExpectAssertionsName]: 'warn',
   [usePreferToBe]: 'warn',
@@ -221,6 +223,7 @@ const plugin = {
     [preferTodoName]: preferTodo,
     [preferSpyOnName]: preferSpyOn,
     [preferComparisonMatcherName]: preferComparisonMatcher,
+    [preferDescribeFunctionNameName]: preferDescribeFunctionName,
     [preferToContainName]: preferToContain,
     [preferExpectAssertionsName]: preferExpectAssertions,
     [paddingAroundAfterAllBlocksName]: paddingAroundAfterAllBlocks,
